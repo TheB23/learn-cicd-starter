@@ -21,11 +21,7 @@ jobs:
       - name: testing
         run: go test -cover ./...
 
-<<<<<<< HEAD
-  style:
-=======
   Style:
->>>>>>> 0825f55 (feat: add formatiing in ci.yml)
     name: Lint code
     runs-on: ubuntu-latest
 
