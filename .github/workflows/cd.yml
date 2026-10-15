@@ -30,7 +30,7 @@ jobs:
           uses: google-github-actions/setup-gcloud@v3
 
         - name: Build and push docker image to Artifact registry
-          run: gcloud builds submit --tag europe-west2-docker-pkg.dev/project-f947717e-21d7-4ae3-a9f/notely-ar-repo/notely:latest .
+          run: gcloud builds submit --tag europe-west2-docker.pkg.dev/project-f947717e-21d7-4ae3-a9f/notely-ar-repo/notely:latest .
 
 
          
