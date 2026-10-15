@@ -34,7 +34,7 @@ jobs:
 
 
         - name: Deploy to Cloud Run
-          run: gcloud run deploy notely --image europe-west2-docker.pkg.dev/project-f947717e-21d7-4ae3-a9f/notely-ar-repo/notely:latest . --region europe-west2 --allow-unauthenticated --project project-f947717e-21d7-4ae3-a9f --max-instances=4
+          run: gcloud run deploy notely --image europe-west2-docker.pkg.dev/project-f947717e-21d7-4ae3-a9f/notely-ar-repo/notely:latest --region europe-west2 --allow-unauthenticated --project project-f947717e-21d7-4ae3-a9f --max-instances=4
 
         
         
