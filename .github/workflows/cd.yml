@@ -9,6 +9,9 @@ jobs:
         name: Deploy
         runs-on: ubuntu-latest
 
+        env:
+            DATABASE_URL: ${{ secrets.DATABASE_URL }}
+
         steps:
         - name: checkout the code
           uses: actions/checkout@v6
@@ -17,6 +20,9 @@ jobs:
           uses: actions/setup-go@v6
           with:
             go-version: "1.27.1"
+        
+        - name: Install goose
+          run: go install github.com/pressly/goose/v3/cmd/goose@latest
 
         - name: runs the build script
           run: ./scripts/buildprod.sh
@@ -31,7 +37,9 @@ jobs:
 
         - name: Build and push docker image to Artifact registry
           run: gcloud builds submit --tag europe-west2-docker.pkg.dev/project-f947717e-21d7-4ae3-a9f/notely-ar-repo/notely:latest .
-
+        
+        - name: Run migration
+          run: ./scripts/migrateup.sh
 
         - name: Deploy to Cloud Run
           run: gcloud run deploy notely --image europe-west2-docker.pkg.dev/project-f947717e-21d7-4ae3-a9f/notely-ar-repo/notely:latest --region europe-west2 --allow-unauthenticated --project project-f947717e-21d7-4ae3-a9f --max-instances=4
